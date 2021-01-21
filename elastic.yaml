@@ -6,7 +6,6 @@ data:
   elasticsearch.yml: |
     cluster.name: docker-cluster
     bootstrap.memory_lock: false
-    discovery.seed_hosts: elasticsearch-cluster
     discovery.zen.minimum_master_nodes: 1
     xpack.security.enabled: false
     xpack.monitoring.enabled: false
@@ -77,11 +76,18 @@ spec:
             - SYS_RESOURCE
         image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
         env:
+        - name: HOST
+          valueFrom:
+            configMapKeyRef:
+              name: gd-config
+              key: elastic_entry
+        - name: discovery.seed_hosts
+          value: "$(HOST)"
         - name: ES_JAVA_OPTS
           valueFrom:
-              configMapKeyRef:
-                  name: es-config
-                  key: ES_JAVA_OPTS
+            configMapKeyRef:
+                name: es-config
+                key: ES_JAVA_OPTS
         ports:
         - containerPort: 9200
           name: http

@@ -74,11 +74,17 @@ spec:
       containers:
       - name: redis
         image: redis
+        env:
+        - name: REDIS_MASTER_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: gd-config
+              key: redis_master
         command:
           - "redis-server"
         args:
           - "--slaveof"
-          - "master.default.svc.cluster.local"
+          - "$(REDIS_MASTER_HOST)"
           - "6379"
           - "--protected-mode"
           - "no"   

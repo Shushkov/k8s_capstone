@@ -30,8 +30,13 @@ spec:
    containers:
    - name: kibana
      env:
+     - name: HOST
+       valueFrom:
+         configMapKeyRef:
+           name: gd-config
+           key: elastic_entry
      - name: ELASTICSEARCH_HOSTS
-       value: http://elasticsearch-cluster:9200
+       value: "http://$(HOST):9200"
      image: docker.elastic.co/kibana/kibana:7.1.1
      ports:
      - containerPort: 5601

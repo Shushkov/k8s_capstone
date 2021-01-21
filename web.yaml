@@ -25,13 +25,24 @@ spec:                                                # 3
         - containerPort: 8085                          # 6
       command: ["interactive", "ingress"]
       env:
+      - name: HOST
+        valueFrom:
+          configMapKeyRef:
+            name: gd-config
+            key: elastic_entry
       - name: ELASTICSEARCH_HOSTS
-        value: http://es-node-0:9200
+        value: "http://$(HOST):9200"
       - name: KUBERNETES_SERVICE_HOST
         value: any string here
       - name: KUBERNETES_SERVICE_PORT
         value: any thing here
       - name: REDIS_MASTER_HOST
-        value: master.default.svc.cluster.local
+        valueFrom:
+          configMapKeyRef:
+            name: gd-config
+            key: redis_master
       - name: REDIS_SLAVE_HOST
-        value: slave.default.svc.cluster.local
+        valueFrom:
+          configMapKeyRef:
+            name: gd-config
+            key: redis_slave

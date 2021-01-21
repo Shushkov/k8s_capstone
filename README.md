@@ -1,10 +1,24 @@
-This repository contains the source files needed to follow the series [Kubernetes and everything else](https://rinormaloku.com/series/kubernetes-and-everything-else/) or summarized as an article in [Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers](https://medium.freecodecamp.org/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882)
+Description
 
-To learn more about Kubernetes and other related topics check the following examples with the **Sentiment Analysis** application:
+In this final task, we’ll migrate a project from docker-compose to Kubernetes. With provided docker-compose.yaml you have to create all necessary specifications for Kubernetes deployment.
 
-* [Kubernetes Volumes in Practice](https://rinormaloku.com/kubernetes-volumes-in-practice/):
-* [Ingress Controller - simplified routing in Kubernetes](https://www.orange-networks.com/blogs/210-ingress-controller-simplified-routing-in-kubernetes)
-* [Docker Compose in Practice](https://github.com/rinormaloku/k8s-mastery/tree/docker-compose)
-* [Istio around everything else series](https://rinormaloku.com/series/istio-around-everything-else/)
-* [Simple CI/CD for Kubernetes with Azure DevOps](https://www.orange-networks.com/blogs/224-azure-devops-ci-cd-pipeline-to-deploy-to-kubernetes)
-* Envoy series - to be added!
+Requirements
+
+1. Every single application in this project has to have at least one Service.
+
+2. Elasticsearch is a single clustered application.
+
+3. Elasticsearch should be deployed as a StatefulSet, Persistent Volumes would be a plus.
+
+4. All communications have to be implemented through Services.
+
+5. Kibana and web-server have to be accessible from outside of the cluster.
+
+6. All shared configs should be managed from one place.
+
+7. In Kubernetes specifications you should use as many different kinds of Kubernetes objects as possible.
+
+Notes:
+
+On local kubernetes installations you might need to extend available memory, due to Elasticsearch requirements.
+This docker-compose.yaml require some indentation fixes due to GridU UI specifics.
