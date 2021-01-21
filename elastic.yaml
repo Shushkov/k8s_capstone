@@ -76,13 +76,11 @@ spec:
             - SYS_RESOURCE
         image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
         env:
-        - name: HOST
+        - name: discovery.seed_hosts
           valueFrom:
             configMapKeyRef:
               name: gd-config
               key: elastic_entry
-        - name: discovery.seed_hosts
-          value: "$(HOST)"
         - name: ES_JAVA_OPTS
           valueFrom:
             configMapKeyRef:
