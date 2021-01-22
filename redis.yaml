@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: master
 spec:
-  type: LoadBalancer
+  clusterIP: None
   ports:
   - protocol: TCP
     port: 6379
@@ -17,7 +17,7 @@ kind: Service
 metadata:
   name: slave
 spec:
-  type: LoadBalancer
+  clusterIP: None
   ports:
   - protocol: TCP
     port: 6379
